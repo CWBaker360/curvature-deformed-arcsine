@@ -1,0 +1,30 @@
+# LaTeX build products
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+*.toc
+
+# Python caches
+__pycache__/
+*.py[cod]
+
+# Virtual environments
+.venv/
+venv/
+
+# OS/editor debris
+.DS_Store
+Thumbs.db
+*.swp
+*~
+
+# Regenerated numerical output directories
+weight6_pilot_outputs/
+weight6_recovery_outputs/
+weight6_angle_holdout_outputs/
+weight6_kw2_scan_outputs/

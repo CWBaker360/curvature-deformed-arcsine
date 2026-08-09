@@ -1,0 +1,1435 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{mathrsfs}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{microtype}
+\usepackage{hyperref}
+
+\hypersetup{hidelinks}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\cI}{\mathcal{I}}
+\newcommand{\Sym}{\operatorname{Sym}}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\Riem}{\mathcal{R}}
+\newcommand{\BRiem}{\widetilde{R}}
+
+\title{\textbf{A Curvature-Deformed Arcsine Coordinate for Cubic Geometric Refinement}\\[0.5em]
+\large Exact Spherical Conjugacy, Riemannian Expansion Through Fifth Order,\\
+and a High-Precision Weight-Six Reconstruction}
+\author{Wayne Baker\\Independent researcher}
+\date{August 8, 2026}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+A normalized geodesic side law on a Riemannian surface defines, by inversion, a
+local linearizing coordinate for geometric encode--scale--decode refinement.
+In the Euclidean limit this coordinate is the ordinary arcsine function.
+This paper develops the resulting \emph{curvature-deformed arcsine}
+\[
+\Psi_{\rho,w}(z)=\frac12 H_{\rho,w}^{-1}(2z),
+\]
+where \(H_{\rho,w}\) is the normalized signed side law for equal-radius geodesic
+endpoints based at \(p\) and centered about a unit tangent direction \(w\).
+
+The construction gives an exact Schr\"oder/Koenigs conjugacy
+\[
+\Psi_{\rho,w}\!\left(\cT_{\rho,w,q}(z)\right)
+=q\,\Psi_{\rho,w}(z),
+\]
+and hence an exact local multiplicative semigroup.  On a sphere the deformed
+arcsine is available in closed form,
+\[
+\Psi_\alpha(z)
+=
+\arcsin\!\left(
+\frac{\sin(z\sin\alpha)}{\sin\alpha}
+\right),
+\]
+which interpolates between \(\arcsin z\) in the flat limit and the identity
+map at the hemispherical value \(\alpha=\pi/2\).
+
+For a general Riemannian surface the variable-curvature expansion is derived
+analytically through geometric weight five.  The coefficient functions are
+finite Laurent polynomials in \(r=\sqrt{1-z^2}\), and therefore every
+geometric-weight row of the Taylor coefficients is a finite combination of
+generalized binomial sequences.  At weight six, where the available
+geodesic-distance expansion no longer directly supplies the required
+degree-eight side-law term, a high-precision intrinsic torus computation is
+used to recover a rational candidate formula in eight natural curvature
+invariants.  Independent geometry and angle holdouts, including a failed
+restricted ansatz and its subsequent correction, provide a stringent
+computational validation.  Conditional on that recovered side law, exact
+symbolic inversion yields the complete weight-six Laurent kernels and
+all Taylor coefficients at that weight.
+
+The results motivate a finite Laurent-kernel conjecture for the full
+curvature hierarchy and extend the cubic \(N\)-series coefficient-lifting
+mechanism from the ordinary arcsine to its Riemannian deformation.
+\end{abstract}
+
+\noindent\textbf{2020 Mathematics Subject Classification.} 53B20, 53A55, 39B12, 65B05.\par
+\noindent\textbf{Key words and phrases.} Riemannian normal coordinates, geodesic distance, Schr\"oder equation, Koenigs linearization, Gaussian curvature, asymptotic expansion, geometric refinement.
+
+\section{Introduction}
+\label{sec:introduction}
+
+A recurring feature of cubic geometric refinement is that a nonlinear
+geometric construction becomes linear after passing to the correct local
+coordinate.  In the flat circular problem that coordinate is the arcsine:
+the classical triple-angle polynomial
+\[
+3z-4z^3
+\]
+is conjugate to multiplication by \(3\) through
+\[
+\arcsin(3z-4z^3)=3\arcsin z
+\]
+on the appropriate local branch.
+
+The same mechanism persists intrinsically on a Riemannian surface, but the
+linearizing coordinate is no longer the ordinary arcsine.  The geometry
+itself deforms it.
+
+Let \(p\) be a point of an oriented Riemannian surface, \(w\in T_pM\) a unit
+tangent direction, and \(\rho>0\) a sufficiently small geodesic radius.
+The equal-radius signed side law
+\[
+c_{\rho,w}(x)
+\]
+records the signed intrinsic distance between radial geodesic endpoints whose
+angular separation is \(x\), centered about the direction \(w\).  Normalize it
+by
+\[
+H_{\rho,w}(x)
+=
+\frac{c_{\rho,w}(x)}{c'_{\rho,w}(0)}.
+\]
+The associated geometric encode--scale--decode map at scale \(q>0\) is
+\[
+\Phi_{\rho,w,q}
+=
+H_{\rho,w}^{-1}\circ(qH_{\rho,w}).
+\]
+Thus
+\[
+H_{\rho,w}\!\left(\Phi_{\rho,w,q}(x)\right)
+=
+qH_{\rho,w}(x)
+\]
+holds identically wherever the local inverse is defined.
+
+This observation has two consequences.  First, the normalized side law is
+already a Koenigs coordinate for the refinement family, equivalently a local
+solution of Schr\"oder's equation; no separate linearization problem has to be
+solved.  Second, after a half-angle
+normalization the flat coordinate becomes precisely \(\arcsin z\).  This leads
+to the definition
+\[
+\Psi_{\rho,w}(z)
+=
+\frac12H_{\rho,w}^{-1}(2z),
+\]
+which is the central object of the present paper.
+
+The work has four layers.
+\begin{enumerate}
+\item The normalized side law gives an exact local semigroup and an exact
+      curvature-deformed arcsine coordinate.
+\item On a sphere, the coordinate and the resulting scale maps are available
+      in closed form.
+\item On a general Riemannian surface, the variable-curvature deformation is
+      expanded analytically through geometric weight five.
+\item At weight six, an independent high-precision intrinsic torus
+      calculation reconstructs a rational candidate for the new side-law term at
+      high precision.  Exact symbolic algebra then propagates that
+      candidate to the full weight-six linearizer and to all Taylor degrees.
+\end{enumerate}
+
+The fourth item is deliberately separated in status from the first three.
+The weight-six side-law coefficients have not yet been obtained from an
+independent degree-eight normal-coordinate derivation.  They are therefore
+stated as a high-precision computational candidate.  All algebraic consequences
+drawn from that candidate are exact.
+
+The Riemann-normal-coordinate calculations through the lower orders use the
+corrected geodesic arc-length expansion developed by Brewin and its public
+source repository \cite{Brewin2009,BrewinRepository}.  The abstract local
+linearization mechanism belongs to the classical theory of the Schr\"oder
+equation; see, for example, Iserles \cite{Iserles1993}.  Likewise, the
+organization of normal-coordinate coefficients by natural curvature tensors
+is classical; a recent formulation is given by Graham and Kuo
+\cite{GrahamKuo2026}.  No novelty is claimed for those general frameworks.
+The specific subject here is their realization by this normalized intrinsic
+side law, the resulting spherical and variable-curvature linearizing
+coordinate, and the finite Laurent structure of its coefficient functions.
+The spherical, fifth-order curvature, and flat cubic coefficient-lifting
+results build on the author's preceding notes \cite{BakerSphere,BakerCurvature,BakerNSeries}.
+
+\section{Geometric side law and exact linearization}
+\label{sec:side-law}
+
+All statements below are local.  We take \(\rho>0\) sufficiently small that
+the relevant radial endpoints and their joining short geodesics remain in a
+common convex normal neighbourhood of \(p\), and all inverse maps are taken on
+the local branch through the origin.
+
+We fix the curvature convention
+\[
+R(A,B)C
+=\nabla_A\nabla_BC-\nabla_B\nabla_AC-\nabla_{[A,B]}C,
+\qquad
+\Riem(A,B,C,D)=\langle R(A,B)C,D\rangle,
+\]
+so that on a surface
+\[
+\Riem(A,B,B,A)
+=K\bigl(|A|^2|B|^2-\langle A,B\rangle^2\bigr).
+\]
+Thus, in components,
+\[
+\Riem_{abcd}=K(g_{ad}g_{bc}-g_{ac}g_{bd}).
+\]
+Brewin's displayed arc-length formulas use the opposite four-slot component
+sign in the slot convention employed in the lower-order derivation; when
+those formulas are invoked we therefore use
+\[
+\BRiem_{abcd}:=-\Riem_{abcd}
+=K(g_{ac}g_{bd}-g_{ad}g_{bc}).
+\]
+This convention lock is the one used in the fifth-order source calculation
+\cite{BakerCurvature}.
+
+Let \((M,g)\) be a smooth oriented Riemannian surface.  Fix
+\[
+p\in M,\qquad |w|_g=1,
+\]
+and let \(J\) denote rotation by \(+\pi/2\) in the oriented tangent plane.
+
+For sufficiently small \(x\), define
+\[
+u_x
+=
+\cos\frac{x}{2}\,w
++
+\sin\frac{x}{2}\,Jw,
+\qquad
+v_x
+=
+\cos\frac{x}{2}\,w
+-
+\sin\frac{x}{2}\,Jw.
+\]
+Let
+\[
+P_x=\exp_p(\rho u_x),
+\qquad
+Q_x=\exp_p(\rho v_x).
+\]
+The signed side law \(c_{\rho,w}(x)\) is the signed length of the unique short
+geodesic from \(P_x\) to \(Q_x\), with sign chosen so that
+\[
+c_{\rho,w}(-x)=-c_{\rho,w}(x).
+\]
+Hence \(c_{\rho,w}\) is locally odd.
+
+Define
+\[
+H_{\rho,w}(x)
+=
+\frac{c_{\rho,w}(x)}{c'_{\rho,w}(0)}.
+\]
+Then
+\[
+H_{\rho,w}(0)=0,
+\qquad
+H'_{\rho,w}(0)=1,
+\]
+so \(H_{\rho,w}\) has a local inverse.  It is convenient to introduce
+the normalized half-side coordinate
+\[
+\boxed{
+S_{\rho,w}(u):=\frac12 H_{\rho,w}(2u).
+}
+\]
+Then \(S_{\rho,w}(0)=0\), \(S'_{\rho,w}(0)=1\), and the
+deformed arcsine introduced below is simply
+\[
+\Psi_{\rho,w}=S_{\rho,w}^{-1}.
+\]
+
+\begin{proposition}[Exact geometric linearization]
+\label{prop:exact-linearization}
+For every admissible local scale \(q>0\), define
+\[
+\Phi_{\rho,w,q}
+=
+H_{\rho,w}^{-1}\circ(qH_{\rho,w}).
+\]
+Then
+\[
+H_{\rho,w}\!\left(\Phi_{\rho,w,q}(x)\right)
+=
+qH_{\rho,w}(x),
+\]
+and the maps obey the local semigroup law
+\[
+\Phi_{\rho,w,q}\circ\Phi_{\rho,w,s}
+=
+\Phi_{\rho,w,qs}.
+\]
+\end{proposition}
+
+\begin{proof}
+Both statements follow directly from the definition and local invertibility
+of \(H_{\rho,w}\).
+\end{proof}
+
+Writing \(q=e^t\) gives a local flow
+\[
+\Phi_t
+=
+H_{\rho,w}^{-1}(e^tH_{\rho,w}),
+\]
+whose infinitesimal generator is
+\[
+V_{\rho,w}(x)
+=
+\frac{H_{\rho,w}(x)}{H'_{\rho,w}(x)}.
+\]
+In the flat circular case,
+\[
+H_0(x)=2\sin\frac{x}{2},
+\qquad
+V_0(x)=2\tan\frac{x}{2}.
+\]
+
+\section{The curvature-deformed arcsine}
+\label{sec:deformed-arcsine}
+
+\begin{definition}
+The curvature-deformed arcsine associated with \((p,w,\rho)\) is
+\[
+\boxed{
+\Psi_{\rho,w}(z)
+=
+\frac12H_{\rho,w}^{-1}(2z).
+}
+\]
+\end{definition}
+
+Equivalently,
+\[
+\Psi_{\rho,w}=S_{\rho,w}^{-1},
+\qquad
+\Psi_{\rho,w}^{-1}(y)
+=
+S_{\rho,w}(y)
+=
+\frac12H_{\rho,w}(2y).
+\]
+Define
+\[
+\cT_{\rho,w,q}
+=
+\Psi_{\rho,w}^{-1}\circ(q\Psi_{\rho,w}).
+\]
+
+\begin{theorem}[Exact Schr\"oder relation]
+\label{thm:schroder}
+For every admissible \(q>0\),
+\[
+\boxed{
+\Psi_{\rho,w}\!\left(\cT_{\rho,w,q}(z)\right)
+=
+q\,\Psi_{\rho,w}(z).
+}
+\]
+Moreover,
+\[
+\cT_{\rho,w,q}\circ\cT_{\rho,w,s}
+=
+\cT_{\rho,w,qs}.
+\]
+\end{theorem}
+
+In the flat limit,
+\[
+H_0(x)=2\sin\frac{x}{2},
+\]
+so
+\[
+\boxed{\Psi_0(z)=\arcsin z.}
+\]
+Thus the ordinary arcsine is the flat member of a geometrically defined
+family.
+
+\section{Exact spherical model}
+\label{sec:sphere}
+
+Let the surface be a sphere of radius \(R\), and write
+\[
+\alpha=\frac{\rho}{R}.
+\]
+The normalized spherical side law is an elementary consequence of spherical
+trigonometry; see also the preceding spherical refinement note
+\cite{BakerSphere}.  In the present setting its significance is that it gives
+the linearizing coordinate in closed form.  Explicitly,
+\[
+\boxed{
+H_\alpha(x)
+=
+\frac{2}{\sin\alpha}
+\arcsin\!\left(
+\sin\alpha\,
+\sin\frac{x}{2}
+\right).
+}
+\]
+
+\begin{theorem}[Exact spherical deformed arcsine]
+\label{thm:spherical-psi}
+For sufficiently small \(z\),
+\[
+\boxed{
+\Psi_\alpha(z)
+=
+\arcsin\!\left(
+\frac{\sin(z\sin\alpha)}{\sin\alpha}
+\right).
+}
+\]
+\end{theorem}
+
+The limiting cases are
+\[
+\Psi_0(z)=\arcsin z,
+\qquad
+\Psi_{\pi/2}(z)=z
+\]
+on the principal local branch.
+
+If \(c=\cos^2\alpha\), then
+\[
+\Psi_\alpha(z)
+=
+z+\frac{c}{6}z^3
++\frac{c(c+8)}{120}z^5
++\frac{c(c^2+88c+136)}{5040}z^7
++O(z^9).
+\]
+
+The exact spherical tripling map is
+\[
+\cT_\alpha
+=
+\Psi_\alpha^{-1}\circ(3\Psi_\alpha),
+\]
+hence
+\[
+\Psi_\alpha(\cT_\alpha(z))=3\Psi_\alpha(z).
+\]
+Its Taylor expansion begins
+\[
+\cT_\alpha(z)
+=
+3z-4cz^3
++16c(c-1)z^5
+-\frac4{15}c(c-1)(311c-221)z^7
++O(z^9).
+\]
+At \(c=1\) this reduces to \(3z-4z^3\), while at \(c=0\) it reduces to
+\(3z\).
+
+\section{General Riemannian expansion through weight five}
+\label{sec:weight-five}
+
+Write
+\[
+K=K(p),\qquad
+K_w=(\nabla_wK)(p),\qquad
+K_{ww}=\nabla^2K(w,w)(p),
+\]
+\[
+D=(\Delta K)(p),\qquad
+D_w=(\nabla_w\Delta K)(p),\qquad
+T_{www}=\nabla^3K(w,w,w)(p).
+\]
+Let \(r=\sqrt{1-z^2}\).  Then
+\[
+\Psi_{\rho,w}(z)
+=
+\arcsin z
++\rho^2\Psi_2(z)
++\rho^3\Psi_3(z)
++\rho^4\Psi_4(z)
++\rho^5\Psi_5(z)
++O(\rho^6).
+\]
+
+\subsection{Analytic side-law input and inversion}
+
+For completeness, we record the exact lower-order side-law input needed for
+the inversion.  Put
+\[
+s=\sin u,\qquad c=\cos u.
+\]
+The signed side law through fifth radial order, derived from the corrected
+normal-coordinate distance expansion in \cite{Brewin2009} with the convention
+lock above, is \cite{BakerCurvature}
+\[
+c_{\rho,w}(2u)
+=2\rho s\,F_{\rho,w}(u),
+\]
+where
+\[
+F_{\rho,w}(u)
+=1+f_2\rho^2+f_3\rho^3+B_4\rho^4+B_5\rho^5+O(\rho^6),
+\]
+with
+\[
+f_2=-\frac16Kc^2,
+\qquad
+f_3=-\frac1{12}K_wc^3,
+\]
+\[
+B_4
+=\frac{c^2}{120}
+\left[(1-9s^2)K^2-3c^2K_{ww}-s^2(D-K_{ww})\right],
+\]
+and, writing
+\[
+T_\Sigma:=3D_w-3T_{www}+2KK_w,
+\]
+\[
+B_5
+=\frac{c^3}{1080}
+\left[(9c^2-92s^2)KK_w-6c^2T_{www}-2s^2T_\Sigma\right].
+\]
+Since \(c'_{\rho,w}(0)=\rho F_{\rho,w}(0)\), the normalized
+half-side coordinate is
+\[
+\boxed{
+S_{\rho,w}(u)
+=s\,\frac{F_{\rho,w}(u)}{F_{\rho,w}(0)}.
+}
+\]
+Thus the calculation of \(\Psi_{\rho,w}\) through weight five is a
+pure perturbative inversion of this displayed scalar series.
+
+\begin{theorem}[Riemannian deformed arcsine through weight five]
+\label{thm:psi-five}
+The coefficient functions are
+\[
+\boxed{
+\Psi_2(z)
+=-\frac{Kz^3}{6r}
+=-\frac{Kz}{6}(r^{-1}-r),
+}
+\]
+\[
+\boxed{
+\Psi_3(z)
+=-\frac{K_wz(1-r^3)}{12r}
+=-\frac{K_wz}{12}(r^{-1}-r^2),
+}
+\]
+\[
+\boxed{
+\Psi_4(z)
+=
+\frac{z^3}{360r^3}
+\left[
+K^2(2r^4+13r^2+5)
++3Dr^4
+-3K_{ww}r^2(4r^2+3)
+\right],
+}
+\]
+and
+\[
+\boxed{
+\begin{aligned}
+\Psi_5(z)
+=
+\frac{z}{360r^3}\Big[
+&2D_wr^5z^2
+\\
+&+KK_w(1-r)
+(5r^6+5r^5+8r^4+18r^3+8r^2+5r+5)
+\\
+&-2T_{www}r^2(1-r)
+(2r^4+2r^3+r^2+r+1)
+\Big].
+\end{aligned}}
+\]
+\end{theorem}
+
+\begin{proof}
+Write
+\[
+u=\arcsin z+\rho^2U_2+\rho^3U_3+\rho^4U_4+\rho^5U_5+O(\rho^6)
+\]
+and substitute into \(S_{\rho,w}(u)=z\).  At each radial order the
+unknown \(U_m\) occurs linearly with coefficient
+\(\cos(\arcsin z)=r\neq0\) on the local branch.  Solving successively
+for \(U_2,U_3,U_4,U_5\) and simplifying with \(z^2=1-r^2\) gives the
+four displayed coefficient functions.  The calculation uses exact rational
+algebra; the accompanying symbolic audit reconstructs the normalized side law
+from the formulas above and verifies all four identities identically.
+\end{proof}
+
+Equivalently,
+\[
+\begin{aligned}
+\Psi_4(z)
+={}&
+\frac{K^2z}{360}(-2r^3-11r+8r^{-1}+5r^{-3})
+\\
+&+\frac{Dz}{120}(r-r^3)
++\frac{K_{ww}z}{120}(4r^3-r-3r^{-1}),
+\end{aligned}
+\]
+and
+\[
+\begin{aligned}
+\Psi_5(z)
+={}&
+\frac{KK_wz}{360}
+(-5r^4-3r^2-10r+10+3r^{-1}+5r^{-3})
+\\
+&+\frac{D_wz}{180}(r^2-r^4)
++\frac{T_{www}z}{360}(4r^4-2r^2-2r^{-1}).
+\end{aligned}
+\]
+
+The \(D_w\) row terminates:
+\[
+\frac{D_wz}{180}(r^2-r^4)
+=
+\frac{D_w}{180}(z^3-z^5),
+\]
+so \(D_w\) contributes only to \(\gamma_3\) and \(\gamma_5\).
+
+\subsection{First Taylor coefficients}
+
+Write
+\[
+\Psi_{\rho,w}(z)
+=
+z+\gamma_3z^3+\gamma_5z^5+\gamma_7z^7+\cdots.
+\]
+Through weight five,
+\[
+\begin{aligned}
+\gamma_3={}&
+\frac16-\frac16K\rho^2-\frac18K_w\rho^3
+\\
+&+\left(\frac1{18}K^2+\frac1{120}D-\frac7{120}K_{ww}\right)\rho^4
+\\
+&+\left(\frac3{40}KK_w+\frac1{180}D_w-\frac7{360}T_{www}\right)\rho^5
++O(\rho^6),
+\end{aligned}
+\]
+\[
+\begin{aligned}
+\gamma_5={}&
+\frac3{40}-\frac1{12}K\rho^2-\frac1{32}K_w\rho^3
+\\
+&+\left(\frac{13}{360}K^2-\frac1{240}D+\frac1{240}K_{ww}\right)\rho^4
+\\
+&+\left(\frac3{160}KK_w-\frac1{180}D_w+\frac{13}{1440}T_{www}\right)\rho^5
++O(\rho^6),
+\end{aligned}
+\]
+and
+\[
+\begin{aligned}
+\gamma_7={}&
+\frac5{112}-\frac1{16}K\rho^2-\frac5{192}K_w\rho^3
+\\
+&+\left(\frac7{180}K^2-\frac1{960}D-\frac1{192}K_{ww}\right)\rho^4
+\\
+&+\left(\frac5{144}KK_w-\frac1{576}T_{www}\right)\rho^5
++O(\rho^6).
+\end{aligned}
+\]
+
+\section{Curved tripling and cubic coefficient lifting}
+\label{sec:lifting}
+
+For the cubic scale set
+\[
+\cT_{\rho,w}
+=
+\cT_{\rho,w,3}
+=
+\Psi_{\rho,w}^{-1}\circ(3\Psi_{\rho,w}).
+\]
+Writing
+\[
+\cT_{\rho,w}(z)
+=
+3z+\tau_3z^3+\tau_5z^5+\tau_7z^7+\cdots,
+\]
+formal conjugacy gives
+\[
+\boxed{\tau_3=-24\gamma_3,}
+\]
+\[
+\boxed{\tau_5=24(27\gamma_3^2-10\gamma_5),}
+\]
+and
+\[
+\boxed{
+\tau_7
+=-24(945\gamma_3^3-675\gamma_3\gamma_5+91\gamma_7).
+}
+\]
+The flat specialization gives \(\cT_0(z)=3z-4z^3\) exactly.
+
+For \(j\ge1\), define
+\[
+\mathscr L_j[P](z)
+=
+\frac{3^{2j+1}P(z)-P(\cT_{\rho,w}(z))}
+{3(3^{2j}-1)}.
+\]
+
+\begin{theorem}[Curved cubic coefficient lifting]
+\label{thm:curved-lifting}
+Let \(P_j\) be odd and suppose
+\[
+\Psi_{\rho,w}(z)-P_j(z)=O(z^{2j+1}).
+\]
+Then
+\[
+P_{j+1}=\mathscr L_j[P_j]
+\]
+satisfies
+\[
+\Psi_{\rho,w}(z)-P_{j+1}(z)=O(z^{2j+3}).
+\]
+\end{theorem}
+
+\begin{proof}
+Set \(E_j=\Psi_{\rho,w}-P_j\).  By the exact Schr\"oder relation,
+\[
+\Psi_{\rho,w}(\cT_{\rho,w}(z))=3\Psi_{\rho,w}(z).
+\]
+If
+\[
+E_j(z)=az^{2j+1}+O(z^{2j+3}),
+\]
+then, because \(\cT_{\rho,w}(z)=3z+O(z^3)\),
+\[
+E_j(\cT_{\rho,w}(z))
+=a(3z)^{2j+1}+O(z^{2j+3}).
+\]
+The defining linear combination cancels the leading error, and oddness skips
+the intervening even degree.
+\end{proof}
+
+Thus the flat cubic \(N\)-series reconstructs the ordinary arcsine coefficient
+sequence, while the Riemannian cubic \(N\)-series reconstructs the
+curvature-deformed sequence.
+
+\section{Weight-six extension}
+\label{sec:weight-six}
+
+Define
+\[
+S_4:=\Sym\nabla^4K,
+\]
+with contractions
+\[
+S_{wwww}:=S_4(w,w,w,w),
+\qquad
+(\tr S)_{ww}:=(\tr S_4)(w,w),
+\qquad
+\tr^2S:=\tr(\tr S_4).
+\]
+The high-precision recovery is organized in the following natural
+weight-six family:
+\[
+K^3,\quad K\Delta K,\quad KK_{ww},\quad |\nabla K|^2,\quad K_w^2,
+\]
+\[
+S_{wwww},\quad (\tr S)_{ww},\quad \tr^2S.
+\]
+This family is motivated by geometric weight, direction/orientation symmetry,
+and the classical natural-tensor framework \cite{GrahamKuo2026}.  At this
+stage it is a candidate basis for this side law rather than an abstract
+completeness theorem for all possible weight-six natural scalars.  The
+full-rank recovery design and unused holdouts test the basis empirically.
+
+\subsection{High-precision side-law reconstruction}
+
+Let \(z=\sin u\) and \(r=\cos u\).  Write
+\[
+S_{\rho,w}(u)
+=
+\sin u+\rho^2s_2(u)+\cdots+\rho^6s_6(u)+O(\rho^7).
+\]
+
+\begin{proposition}[High-precision weight-six reconstruction]
+\label{prop:s6}
+High-precision intrinsic torus computations, rational reconstruction, and
+independent geometry and angle holdout tests identify
+\[
+\begin{aligned}
+s_6
+=
+z\Bigg\{&
+K^3(1-r^2)
+\left(\frac{31}{15120}-\frac{11}{280}r^2+\frac5{112}r^4\right)
+\\
+&+K\Delta K(1-r^2)
+\left(-\frac1{112}r^2+\frac{127}{15120}r^4\right)
+\\
+&+KK_{ww}(1-r^2)
+\left(\frac{29}{5040}+\frac{53}{5040}r^2-\frac{53}{1260}r^4\right)
+\\
+&+|\nabla K|^2(1-r^2)
+\left(-\frac{17}{10080}r^2+\frac{71}{30240}r^4\right)
+\\
+&+K_w^2
+\left(
+\frac5{1008}+\frac{17}{10080}r^2-\frac1{144}r^3
+-\frac{157}{5040}r^4+\frac{317}{10080}r^6
+\right)
+\\
+&+S_{wwww}(1-r^2)
+\left(\frac1{1008}+\frac1{1260}r^2+\frac1{315}r^4\right)
+\\
+&+(\tr S)_{ww}(1-r^2)
+\left(\frac1{2520}r^2-\frac1{420}r^4\right)
+\\
+&+\tr^2S(1-r^2)
+\left(-\frac1{5040}r^2+\frac1{5040}r^4\right)
+\Bigg\}.
+\end{aligned}
+\]
+\end{proposition}
+
+\begin{remark}[Status]
+Proposition~\ref{prop:s6} is a high-precision rational reconstruction
+supported by independent holdout computations; it is not yet an analytic
+degree-eight normal-coordinate theorem or an interval-arithmetic proof.  The
+distinction is maintained throughout this paper.
+\end{remark}
+
+The \(K^3\) row is independently fixed by the exact spherical model:
+\[
+\boxed{
+[s_6]_{K^3}
+=
+\frac{K^3z^3}{15120}(675r^4-594r^2+31).
+}
+\]
+
+The \(K_w^2\) row deserves separate attention.  A first restricted ansatz in
+which every row factored as
+\[
+z(1-r^2)(A+Br^2+Cr^4)
+\]
+failed at new side angles.  The discrepancy was traced to normalization of
+the already-known weight-three side-law term
+\[
+f_3(u)=-\frac{K_w}{12}r^3.
+\]
+Indeed,
+\[
+f_3(0)^2-f_3(u)f_3(0)
+=
+\frac{K_w^2}{144}(1-r^3),
+\]
+which is not divisible by \(1-r^2\) with an even-polynomial quotient.  Once
+this forced nonlinear contribution is included, the independent angle
+holdouts return to the numerical extraction scale.
+
+\subsection{Universal inverse formula at weight six}
+
+Let
+\[
+S_{\rho,w}(u)
+=
+s_0(u)+\rho^2s_2(u)+\cdots+\rho^6s_6(u)+O(\rho^7),
+\qquad s_0(u)=\sin u,
+\]
+and
+\[
+\Psi_{\rho,w}(z)
+=
+u_0+\rho^2U_2+\cdots+\rho^6U_6+O(\rho^7),
+\qquad u_0=\arcsin z.
+\]
+Exact formal inversion gives
+\[
+\begin{aligned}
+U_6=-\frac1r\Bigg[
+&s_6+s_4'U_2+s_3'U_3+s_2'U_4+\frac12s_2''U_2^2
+\\
+&-z\left(U_2U_4+\frac12U_3^2\right)-\frac r6U_2^3
+\Bigg],
+\end{aligned}
+\]
+where side-law derivatives are evaluated at \(u=u_0\).  In particular,
+\[
+\boxed{s_5\ \text{and}\ U_5\ \text{do not enter}\ U_6.}
+\]
+Thus
+\[
+\Psi_6=\Psi_6^{\mathrm{ind}}-\frac{s_6}{r},
+\]
+where the induced term is determined entirely by weights \(2,3,4\).
+
+\subsection{Complete finite Laurent layer}
+
+\begin{theorem}[Conditional weight-six Laurent expansion]
+\label{thm:weight-six-laurent}
+Assume Proposition~\ref{prop:s6}.  Then
+\[
+\boxed{
+\Psi_6(z;p,w)
+=
+z\sum_I\cI_I(p,w)L_I(r),
+\qquad r=\sqrt{1-z^2},
+}
+\]
+with
+\[
+L_{K^3}
+=
+\frac{r^5}{2835}+\frac{r^3}{5670}+\frac{23r}{15120}
++\frac1{9072r}+\frac1{6480r^3}-\frac1{432r^5},
+\]
+\[
+L_{K\Delta K}
+=
+-\frac{r^5}{756}+\frac{53r^3}{15120}-\frac r{280}+\frac1{720r},
+\]
+\[
+L_{KK_{ww}}
+=
+-\frac{r^5}{315}-\frac{5r^3}{504}+\frac{13r}{1680}
++\frac1{840r}+\frac1{240r^3},
+\]
+\[
+L_{|\nabla K|^2}
+=
+\frac{71r^5}{30240}-\frac{61r^3}{15120}+\frac{17r}{10080},
+\]
+\[
+\begin{aligned}
+L_{K_w^2}
+={}&
+-\frac{r^5}{140}+\frac{139r^3}{10080}-\frac{r^2}{48}
+-\frac{17r}{10080}
+\\
+&+\frac1{72}-\frac1{672r}+\frac1{288r^3},
+\end{aligned}
+\]
+\[
+L_{S_{wwww}}
+=
+\frac{r^5}{315}-\frac{r^3}{420}+\frac r{5040}-\frac1{1008r},
+\]
+\[
+L_{(\tr S)_{ww}}
+=
+-\frac{r^5}{420}+\frac{r^3}{360}-\frac r{2520},
+\]
+and
+\[
+L_{\tr^2S}
+=
+\frac{r^5}{5040}-\frac{r^3}{2520}+\frac r{5040}.
+\]
+Each kernel obeys \(L_I(1)=0\).
+\end{theorem}
+
+\begin{proof}
+Using Proposition~\ref{prop:s6}, substitute the previously established
+\(U_2,U_3,U_4\) into the universal weight-six inverse formula.  Exact symbolic
+simplification gives the displayed kernels.  This inversion step uses no
+numerical approximation.
+\end{proof}
+
+\subsection{Exact spherical checksum at weight six}
+
+The constant-curvature sector of Theorem~\ref{thm:weight-six-laurent} can be
+checked independently from the exact spherical formula, without using the
+torus recovery.  Expanding
+\[
+\Psi_\alpha(z)
+=
+\arcsin\!\left(
+\frac{\sin(z\sin\alpha)}{\sin\alpha}
+\right)
+\]
+through order \(\alpha^6\) gives
+\[
+\boxed{
+[\alpha^6]\Psi_\alpha(z)
+=
+z\left(
+\frac{r^5}{2835}
++\frac{r^3}{5670}
++\frac{23r}{15120}
++\frac{1}{9072r}
++\frac{1}{6480r^3}
+-\frac{1}{432r^5}
+\right),
+}
+\qquad r=\sqrt{1-z^2}.
+\]
+Thus
+\[
+[\alpha^6]\Psi_\alpha(z)=zL_{K^3}(r)
+\]
+identically as a function of \(z\).  Since on a constant-curvature surface
+\[
+\alpha=\rho\sqrt K,
+\qquad
+\alpha^6=K^3\rho^6,
+\]
+the entire \(K^3\rho^6\) row in the general weight-six Laurent expansion is
+fixed independently by the exact spherical model.  Exact symbolic
+simplification of the difference between the two expressions gives zero.
+
+\section{All Taylor degrees at weight six}
+\label{sec:all-n}
+
+Define
+\[
+\boxed{
+\beta_n^{(\nu)}=(-1)^n\binom{\nu/2}{n},
+}
+\]
+so that
+\[
+(1-z^2)^{\nu/2}
+=
+\sum_{n\ge0}\beta_n^{(\nu)}z^{2n}.
+\]
+
+\begin{corollary}[All-\(n\) weight-six coefficient rows]
+\label{cor:all-n}
+Assume Proposition~\ref{prop:s6}.  For every \(n\ge1\),
+\[
+\begin{aligned}
+[\rho^6]\gamma_{2n+1}
+={}&
+A_nK^3+B_nK\Delta K+C_nKK_{ww}+D_n|\nabla K|^2
+\\
+&+E_nK_w^2+F_nS_{wwww}+G_n(\tr S)_{ww}+H_n\tr^2S,
+\end{aligned}
+\]
+where
+\[
+\begin{aligned}
+A_n={}&
+\frac1{2835}\beta_n^{(5)}
++\frac1{5670}\beta_n^{(3)}
++\frac{23}{15120}\beta_n^{(1)}
+\\
+&+\frac1{9072}\beta_n^{(-1)}
++\frac1{6480}\beta_n^{(-3)}
+-\frac1{432}\beta_n^{(-5)},
+\end{aligned}
+\]
+\[
+B_n
+=
+-\frac1{756}\beta_n^{(5)}
++\frac{53}{15120}\beta_n^{(3)}
+-\frac1{280}\beta_n^{(1)}
++\frac1{720}\beta_n^{(-1)},
+\]
+\[
+\begin{aligned}
+C_n={}&
+-\frac1{315}\beta_n^{(5)}
+-\frac5{504}\beta_n^{(3)}
++\frac{13}{1680}\beta_n^{(1)}
+\\
+&+\frac1{840}\beta_n^{(-1)}
++\frac1{240}\beta_n^{(-3)},
+\end{aligned}
+\]
+\[
+D_n
+=
+\frac{71}{30240}\beta_n^{(5)}
+-\frac{61}{15120}\beta_n^{(3)}
++\frac{17}{10080}\beta_n^{(1)},
+\]
+\[
+\begin{aligned}
+E_n={}&
+-\frac1{140}\beta_n^{(5)}
++\frac{139}{10080}\beta_n^{(3)}
+-\frac1{48}\beta_n^{(2)}
+-\frac{17}{10080}\beta_n^{(1)}
+\\
+&+\frac1{72}\beta_n^{(0)}
+-\frac1{672}\beta_n^{(-1)}
++\frac1{288}\beta_n^{(-3)},
+\end{aligned}
+\]
+\[
+F_n
+=
+\frac1{315}\beta_n^{(5)}
+-\frac1{420}\beta_n^{(3)}
++\frac1{5040}\beta_n^{(1)}
+-\frac1{1008}\beta_n^{(-1)},
+\]
+\[
+G_n
+=
+-\frac1{420}\beta_n^{(5)}
++\frac1{360}\beta_n^{(3)}
+-\frac1{2520}\beta_n^{(1)},
+\]
+and
+\[
+H_n
+=
+\frac1{5040}\beta_n^{(5)}
+-\frac1{2520}\beta_n^{(3)}
++\frac1{5040}\beta_n^{(1)}.
+\]
+\end{corollary}
+
+\begin{proof}
+Every kernel in Theorem~\ref{thm:weight-six-laurent} is a finite linear
+combination of powers \(r^\nu=(1-z^2)^{\nu/2}\).  Expanding each power by the
+generalized binomial theorem and collecting \(z^{2n+1}\) gives the result.
+\end{proof}
+
+\subsection{Low Taylor degrees through weight six}
+
+Combining the analytic lower-order results with the weight-six extension gives
+\[
+\begin{aligned}
+\gamma_3={}&
+\frac16-\frac16K\rho^2-\frac18K_w\rho^3
+\\
+&+\left(\frac1{18}K^2+\frac1{120}D-\frac7{120}K_{ww}\right)\rho^4
+\\
+&+\left(\frac3{40}KK_w+\frac1{180}D_w-\frac7{360}T_{www}\right)\rho^5
+\\
+&+\Bigg(
+-\frac1{135}K^3+\frac1{1890}K\Delta K+\frac{13}{504}KK_{ww}
+-\frac1{1512}|\nabla K|^2
+\\
+&\hspace{1.4cm}
++\frac{47}{2016}K_w^2-\frac5{1008}S_{wwww}
++\frac1{504}(\tr S)_{ww}
+\Bigg)\rho^6+O(\rho^7),
+\end{aligned}
+\]
+\[
+\begin{aligned}
+\gamma_5={}&
+\frac3{40}-\frac1{12}K\rho^2-\frac1{32}K_w\rho^3
+\\
+&+\left(\frac{13}{360}K^2-\frac1{240}D+\frac1{240}K_{ww}\right)\rho^4
+\\
+&+\left(\frac3{160}KK_w-\frac1{180}D_w+\frac{13}{1440}T_{www}\right)\rho^5
+\\
+&+\Bigg(
+-\frac1{108}K^3-\frac1{5040}K\Delta K-\frac1{420}KK_{ww}
++\frac3{1120}|\nabla K|^2
+\\
+&\hspace{1.4cm}
+-\frac{83}{40320}K_w^2+\frac{47}{10080}S_{wwww}
+-\frac{17}{5040}(\tr S)_{ww}+\frac1{5040}\tr^2S
+\Bigg)\rho^6+O(\rho^7),
+\end{aligned}
+\]
+and
+\[
+\begin{aligned}
+\gamma_7={}&
+\frac5{112}-\frac1{16}K\rho^2-\frac5{192}K_w\rho^3
+\\
+&+\left(\frac7{180}K^2-\frac1{960}D-\frac1{192}K_{ww}\right)\rho^4
+\\
+&+\left(\frac5{144}KK_w-\frac1{576}T_{www}\right)\rho^5
+\\
+&+\Bigg(
+-\frac{227}{15120}K^3+\frac{13}{10080}K\Delta K+\frac3{320}KK_{ww}
+-\frac{11}{10080}|\nabla K|^2
+\\
+&\hspace{1.4cm}
++\frac{119}{11520}K_w^2-\frac{59}{40320}S_{wwww}
++\frac{19}{20160}(\tr S)_{ww}-\frac1{10080}\tr^2S
+\Bigg)\rho^6+O(\rho^7).
+\end{aligned}
+\]
+
+At weight five,
+\[
+\frac{D_wz}{180}(r^2-r^4)=\frac{D_w}{180}(z^3-z^5),
+\]
+so \([D_w]\gamma_{2n+1}=0\) for \(n\ge3\).
+
+At weight six, \(\beta_n^{(0)}=0\) for \(n\ge1\), so the constant term in
+\(L_{K_w^2}\) affects only the linear normalization.  Also
+\(\beta_n^{(2)}=0\) for \(n\ge2\), so the term \(-r^2/48\) contributes only
+to \(\gamma_3\).  A further cancellation is
+\[
+[\tr^2S\,\rho^6]\gamma_3=0.
+\]
+
+\section{Computational validation of the weight-six layer}
+\label{sec:verification}
+
+The weight-six side-law candidate was recovered independently of the formal
+normal-coordinate inversion formulas using the ring-torus metric
+\[
+ds^2=a^2\,d\theta^2+(R+a\cos\theta)^2\,d\phi^2.
+\]
+Intrinsic radial endpoints and joining geodesics were computed directly at
+arbitrary precision.
+
+The normalization derivative was obtained from the scalar Jacobi equation
+along the central radial geodesic,
+\[
+j''+Kj=0,
+\qquad j(0)=0,
+\qquad j'(0)=1,
+\]
+so that
+\[
+c'_{\rho,w}(0)=j(\rho).
+\]
+Opposite directions \(w\) and \(-w\) were averaged, cancelling odd geometric
+weights.  After subtraction of the known weight-two and weight-four terms,
+\[
+E_6(\rho)
+=
+\frac{S_{\mathrm{even}}-\sin u-\rho^2s_2-\rho^4s_4}{\rho^6}
+=
+s_6+O(\rho^2).
+\]
+
+A higher even extrapolation basis
+\[
+1,\rho^2,\rho^4,\rho^6,\rho^8
+\]
+was used to recover \(s_6\).  Ten torus geometries at three initial side
+angles produced thirty measurements.  Twenty-one equations from the first
+seven geometries determined the unknown coefficients, while nine equations
+from three unused geometries served as holdouts.  After higher-order
+reprocessing, the holdout root-mean-square residual was approximately
+\[
+9.6\times10^{-23}.
+\]
+
+A second validation used side angles not present in the recovery.  The
+initial restricted angular ansatz failed by many orders of magnitude beyond
+the extraction error.  The discrepancy was proportional to \(K_w^2\) across
+all tested geometries and was traced to the normalization term
+\[
+\frac{K_w^2}{144}(1-r^3).
+\]
+After that mechanism was incorporated, twelve independent angle holdouts
+collapsed to a root-mean-square residual of approximately
+\[
+3.5\times10^{-24}.
+\]
+
+Finally, exact symbolic arithmetic verified the normalization
+\[
+L_I(1)=0,
+\]
+the exact spherical \(K^3\) kernel, and the all-\(n\) formulas against direct
+Taylor expansion through \(n=12\).
+
+The accompanying reproducibility archive contains separate scripts for the
+weight-six inverse scaffold, angular-target and rank audits, high-precision
+torus pilot, full recovery, higher-order reprocessing, out-of-sample angular
+validation, direct \(K_w^2\) kernel isolation, corrected-kernel check, and
+exact Laurent/all-\(n\) audit, together with the raw and processed data used
+for the reported holdouts.
+
+\section{Finite Laurent-kernel structure}
+\label{sec:finite-laurent}
+
+Through weights two to six the deformed arcsine has the observed structure
+\[
+\boxed{
+\Psi_m(z;p,w)
+=
+z\sum_I\cI_{m,I}(p,w)
+L_{m,I}\!\left(\sqrt{1-z^2}\right),
+}
+\]
+where \(\cI_{m,I}\) is a natural curvature invariant of geometric weight
+\(m\), and every coefficient function encountered so far is a finite Laurent
+polynomial.
+
+The weight-six calculation is a stronger test than the lower orders because
+a more restrictive angular hypothesis was actually falsified.  The failure
+was localized to a single invariant sector, explained by a nonlinear
+normalization effect already implied by the lower-order geometry, and
+corrected without changing the invariant family.  Independent holdouts then
+returned to the numerical extraction scale.
+
+\begin{conjecture}[Finite Laurent-kernel conjecture]
+\label{conj:finite-laurent}
+At every finite geometric weight \(m\),
+\[
+\boxed{
+\Psi_m(z;p,w)
+=
+z\sum_I\cI_{m,I}(p,w)L_{m,I}(r),
+\qquad r=\sqrt{1-z^2},
+}
+\]
+where each \(\cI_{m,I}\) is an admissible natural curvature invariant of
+weight \(m\), and each \(L_{m,I}\) is a finite Laurent polynomial in \(r\).
+\end{conjecture}
+
+If the conjecture holds, then every geometric-weight row of
+\[
+\gamma_3,\gamma_5,\gamma_7,\ldots
+\]
+is a finite linear combination of generalized binomial sequences
+\[
+\beta_n^{(\nu)}=(-1)^n\binom{\nu/2}{n}.
+\]
+Finite-support selection rules arise whenever a nonnegative integral exponent
+\(\nu\) causes the associated generalized binomial sequence to terminate.
+
+\section{Discussion}
+\label{sec:discussion}
+
+The central point of this paper is not that local analytic linearization is
+new.  Schr\"oder and Koenigs linearization belong to classical local dynamics.
+What is geometrically significant here is that the normalized intrinsic side
+law supplies the linearizing coordinate directly:
+\[
+H_{\rho,w}(\Phi_{\rho,w,q}(x))=qH_{\rho,w}(x).
+\]
+The corresponding half-angle inverse is a curvature-deformed arcsine.
+
+The exact sphere provides a closed model in which curvature continuously
+deforms the flat arcsine toward the identity map.  The general Riemannian
+expansion shows how the local curvature jet enters this coordinate.  Through
+weight five the result is analytic.  At weight six the intrinsic
+high-precision calculation reconstructs a candidate invariant layer whose
+subsequent Laurent and all-\(n\) consequences are exact conditional on that
+input.
+
+The strongest structural observation is the persistence of finite Laurent
+kernels.  This turns a local geometric expansion into a statement about an
+entire infinite family of Taylor coefficients at once.  It also explains why
+selection rules can occur: finite nonnegative powers of \(r\) correspond to
+terminating generalized-binomial sequences.
+
+The remaining major proof obligation is the independent derivation of the
+degree-eight geodesic-distance term needed to establish
+Proposition~\ref{prop:s6} analytically.  Such a derivation would convert the
+present high-precision weight-six reconstruction into a theorem and would
+provide the first direct analytic test of
+Conjecture~\ref{conj:finite-laurent} beyond the orders from which the pattern
+was discovered.
+
+\section{Conclusion}
+\label{sec:conclusion}
+
+The normalized geodesic side law defines an exact local linearizing coordinate
+for geometric refinement on a Riemannian surface.  After half-angle
+normalization this coordinate becomes
+\[
+\Psi_{\rho,w}(z)=\frac12H_{\rho,w}^{-1}(2z),
+\]
+which reduces to the ordinary arcsine in the flat limit.
+
+The resulting framework gives:
+\begin{itemize}
+\item an exact local multiplicative semigroup;
+\item an exact spherical curvature-deformed arcsine;
+\item an analytic variable-curvature expansion through weight five;
+\item a curved cubic coefficient-lifting theorem;
+\item a high-precision reconstruction of the weight-six side-law candidate;
+\item exact weight-six finite Laurent kernels conditional on that candidate;
+\item all Taylor coefficients at weight six in generalized-binomial form; and
+\item a sharpened finite Laurent-kernel conjecture for the full curvature
+      hierarchy.
+\end{itemize}
+
+The exact spherical solution, variable-curvature expansion,
+coefficient-lifting mechanism, and weight-six computational validation all
+point to a common interpretation: cubic geometric refinement does not lose
+the flat arcsine linearizer under curvature.  Rather, curvature deforms that
+linearizer in a structured invariant hierarchy.
+
+\begin{thebibliography}{99}
+
+\bibitem{Brewin2009}
+L.~C. Brewin,
+\newblock ``Riemann normal coordinate expansions using Cadabra,''
+\newblock \emph{Classical and Quantum Gravity} \textbf{26} (2009), 175017;
+corrected arXiv version arXiv:0903.2087v4 (2022).
+\newblock doi:10.1088/0264-9381/26/17/175017.
+
+\bibitem{BrewinRepository}
+L.~C. Brewin,
+\newblock \emph{riemann-normal-coords: LaTeX and Cadabra sources for Riemann normal coordinate expansions},
+\newblock public GitHub repository, accessed August 8, 2026.
+\newblock \url{https://github.com/leo-brewin/riemann-normal-coords}.
+
+\bibitem{Iserles1993}
+A.~Iserles,
+\newblock ``A constructive approach to the Schr\"oder equation,''
+\newblock \emph{Journal of Computational and Applied Mathematics}
+\textbf{46} (1993), 301--314.
+\newblock doi:10.1016/0377-0427(93)90304-T.
+
+\bibitem{GrahamKuo2026}
+C.~R. Graham and T.-M. Kuo,
+\newblock ``Geodesic normal coordinates and natural tensors for pseudo-Riemannian submanifolds,''
+\newblock \emph{Proceedings of the American Mathematical Society}
+\textbf{154} (2026), 339--351.
+\newblock doi:10.1090/proc/17432.
+
+\bibitem{BakerSphere}
+W.~Baker,
+\newblock ``A Spherical Extension of the Baker Cubic Trisection Refinement Map,''
+\newblock unpublished manuscript, August 2026.
+
+\bibitem{BakerCurvature}
+W.~Baker,
+\newblock ``Directional Curvature Expansion of the Baker Cubic Coefficient on Riemannian Surfaces Through Fifth Order,''
+\newblock unpublished manuscript, August 2026.
+
+\bibitem{BakerNSeries}
+W.~Baker,
+\newblock ``Cubic \(N\)-Series Acceleration and Newton-Coefficient Lifting for the Arcsine,''
+\newblock unpublished manuscript, 2026.
+
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,28 @@
+cff-version: 1.2.0
+message: "If you use this manuscript or its reproducibility materials, please cite this work."
+title: >-
+  A Curvature-Deformed Arcsine Coordinate for Cubic Geometric Refinement:
+  Exact Spherical Conjugacy, Riemannian Expansion Through Fifth Order, and a
+  High-Precision Weight-Six Reconstruction
+type: article
+authors:
+  - family-names: "Baker"
+    given-names: "Wayne"
+version: "1.0.0"
+date-released: "2026-08-08"
+license: CC-BY-4.0
+abstract: >-
+  A normalized intrinsic geodesic side law defines an exact local linearizing
+  coordinate for geometric refinement on a Riemannian surface. The associated
+  curvature-deformed arcsine is obtained exactly on the sphere, analytically
+  through geometric weight five on general surfaces, and extended at weight
+  six by high-precision rational reconstruction with independent holdout tests.
+keywords:
+  - Riemannian geometry
+  - geodesic side law
+  - arcsine
+  - Schroeder equation
+  - Koenigs linearization
+  - curvature invariants
+  - cubic refinement
+  - extrapolation

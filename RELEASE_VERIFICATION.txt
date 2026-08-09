@@ -1,0 +1,250 @@
+===== scripts/verify_curvature_deformed_arcsine.py =====
+Exact symbolic audit: curvature-deformed arcsine
+=======================================================
+Psi2                 PASS
+Psi3                 PASS
+Psi4                 PASS
+Psi5                 PASS
+gamma3               PASS
+gamma5               PASS
+gamma7               PASS
+sphere_gamma3        PASS
+sphere_gamma5        PASS
+sphere_gamma7        PASS
+sphere_tripling      PASS
+
+ALL CHECKS PASS
+
+Recovered coefficients:
+gamma_3 = -K*rho**2/6 - Kw*rho**3/8 + rho**5*(Dw/180 + 3*K*Kw/40 - 7*Twww/360) + rho**4*(D/120 - 7*Hww/120 + K**2/18) + 1/6
+gamma_5 = -K*rho**2/12 - Kw*rho**3/32 + rho**5*(-Dw/180 + 3*K*Kw/160 + 13*Twww/1440) + rho**4*(-D/240 + Hww/240 + 13*K**2/360) + 3/40
+gamma_7 = -K*rho**2/16 - 5*Kw*rho**3/192 + rho**5*(5*K*Kw/144 - Twww/576) + rho**4*(-D/960 - Hww/192 + 7*K**2/180) + 5/112
+
+General curved tripling coefficients
+=======================================================
+tau3_general         PASS
+tau5_general         PASS
+tau7_general         PASS
+
+tau_3 = 4*K*rho**2 + 3*Kw*rho**3 + rho**5*(-2*Dw/15 - 9*K*Kw/5 + 7*Twww/15) + rho**4*(-D/5 + 7*Hww/5 - 4*K**2/3) - 4
+tau_5 = -16*K*rho**2 - 39*Kw*rho**3/2 + rho**5*(38*Dw/15 + 387*K*Kw/10 - 191*Twww/30) + rho**4*(14*D/5 - 68*Hww/5 + 64*K**2/3)
+tau_7 = 24*K*rho**2 + 455*Kw*rho**3/8 + rho**5*(-75*Dw/4 - 7085*K*Kw/24 + 991*Twww/24) + rho**4*(-73*D/5 + 62*Hww - 1724*K**2/15)
+
+===== scripts/verify_weight6_scaffold.py =====
+Weight-six geometric linearizer scaffold
+==============================================================
+Universal inverse formula: PASS
+Structural consequence: s5 and U5 do not enter U6.
+
+Known nonlinear inversion contribution to Psi_6:
+K^3 kernel      = -287*r**5/6480 + 109*r**3/1296 - 43*r/1080 + 7/(3240*r) + 1/(6480*r**3) - 1/(432*r**5)
+K DeltaK kernel = -7*r**5/720 + r**3/48 - r/80 + 1/(720*r)
+K K_ww kernel   = 7*r**5/180 - r**3/16 + r/80 + 1/(144*r) + 1/(240*r**3)
+K_w^2 kernel    = 7*r**5/288 - 5*r**3/288 - r**2/36 + 1/72 + 1/(288*r) + 1/(288*r**3)
+
+Exact spherical checks:
+side-law alpha^6 term   : PASS
+induced/direct split    : PASS
+
+Exact total K^3 kernel:
+L_K3(r) = r**5/2835 + r**3/5670 + 23*r/15120 + 1/(9072*r) + 1/(6480*r**3) - 1/(432*r**5)
+
+Exact spherical normalized-side-law fingerprint:
+s6[K^3] = K^3*z^3*(675*r^4 - 594*r^2 + 31)/15120
+
+All-degree K^3 row, n=1,...,12: PASS
+First six coefficients:
+[z^3] K^3 rho^6 = -1/135
+[z^5] K^3 rho^6 = -1/108
+[z^7] K^3 rho^6 = -227/15120
+[z^9] K^3 rho^6 = -233/11340
+[z^11] K^3 rho^6 = -809/30240
+[z^13] K^3 rho^6 = -16207/483840
+
+Candidate weight-six invariant basis:
+K^3
+K DeltaK
+K K_ww
+|grad K|^2
+K_w^2
+Sym(nabla^4 K)(w,w,w,w)
+tr Sym(nabla^4 K)(w,w)
+tr^2 Sym(nabla^4 K)
+
+===== scripts/weight6_angular_target.py =====
+WEIGHT-SIX ANGULAR TARGET: PASS
+Generic direct Laurent kernel:
+-a/r + c*r**5 + r**3*(b - c) + r*(a - b)
+K^3 constants: 31/15120 -11/280 5/112
+Raw unknown count: 24
+After exact spherical K^3 row: 21
+
+===== scripts/weight6_torus_design_rank.py =====
+WEIGHT-SIX TORUS DESIGN-RANK AUDIT
+================================================================
+observations                 : 30
+unknown constants            : 21
+raw matrix rank              : 21
+column-normalized matrix rank: 21
+scaled condition number      : 3409.23245219
+
+FULL RANK 21: PASS
+Redundant equations: 9
+
+Invariant rows:
+  K DeltaK
+  K K_ww
+  |grad K|^2
+  K_w^2
+  S_wwww
+  (tr S)_ww
+  tr^2 S
+
+Recommended geometry groups
+(R, minor_radius, theta, beta)
+ 1: (3.0, 1.0, 1.1, 0.0)
+ 2: (3.0, 0.7, 2.0, 1.4)
+ 3: (5.0, 0.7, 2.5, 0.0)
+ 4: (3.0, 0.7, 0.7, 1.4)
+ 5: (3.0, 0.7, 2.0, 1.05)
+ 6: (3.0, 0.7, 0.3, 0.0)
+ 7: (3.0, 0.7, 2.5, 1.4)
+ 8: (4.0, 0.7, 0.3, 0.35)
+ 9: (3.0, 1.0, 2.0, 0.35)
+10: (4.0, 1.0, 1.5, 0.0)
+
+Side angles for each geometry: (0.4, 0.8, 1.2)
+
+Interpretation:
+30 measured s6 values determine 21 remaining constants,
+leaving 9 redundant equations for an internal consistency test.
+
+===== scripts/weight6_reprocess_high_order.py =====
+WEIGHT-SIX HIGH-ORDER REPROCESSING
+================================================================
+holdout RMS       = 9.63259925275435898083557840566e-23
+holdout max abs   = 1.40614762562880676041870056881e-22
+all-30 LS RMS     = 2.55618100208687234385664473467e-23
+max |fit21-all30| = 1.30998961822140633944366878639e-20
+
+===== scripts/verify_weight6_exact_kw2_kernel.py =====
+WEIGHT-SIX EXACT K_w^2 KERNEL CERTIFICATE
+========================================================================
+
+Corrected factored kernel:
+Q_Kw2(r) = (1-r^3)/(144(1-r^2)) - 1/504 - r^2/3360 - 317 r^4/10080
+
+Equivalent normalized-side-law polynomial:
+s6[K_w^2]/(z K_w^2) =
+  5/1008 + 17 r^2/10080 - r^3/144 - 157 r^4/5040 + 317 r^6/10080
+
+Eight-angle scan:
+  RMS residual     = 2.88122364468896569959088981206e-18
+  max |residual|   = 6.10279798359263347245978047257e-18
+
+Twelve independent angle holdouts:
+  all-12 RMS       = 3.46002147208324760223147398595e-24
+  all-12 max abs   = 1.08572293282208677025795734036e-23
+  geometry-1 RMS   = 3.27526018638065338777038598271e-26
+  geometries 8-10  = 3.99524390645425827100426215317e-24
+
+PASS if these residuals remain at the extraction/roundoff scale.
+
+===== scripts/verify_weight6_psi6_alln.py =====
+WEIGHT-SIX Psi_6 LAURENT / ALL-n AUDIT
+========================================================================
+normalization L_I(1)=0: PASS
+exact spherical K^3 kernel: PASS
+all-n rows n=1,...,12: PASS
+
+K_w^2 selection rules:
+  beta_n^(0)=0 for every n>=1: constant term affects only z.
+  beta_n^(2)=0 for every n>=2: r^2 term affects only gamma_3.
+  beta_1^(2) = -1 so -r^2/48 contributes +1/48 to gamma_3.
+
+Complete finite Laurent kernels:
+K^3:
+  r**5/2835 + r**3/5670 + 23*r/15120 + 1/(9072*r) + 1/(6480*r**3) - 1/(432*r**5)
+K DeltaK:
+  -r**5/756 + 53*r**3/15120 - r/280 + 1/(720*r)
+K K_ww:
+  -r**5/315 - 5*r**3/504 + 13*r/1680 + 1/(840*r) + 1/(240*r**3)
+|grad K|^2:
+  71*r**5/30240 - 61*r**3/15120 + 17*r/10080
+K_w^2:
+  -r**5/140 + 139*r**3/10080 - r**2/48 - 17*r/10080 + 1/72 - 1/(672*r) + 1/(288*r**3)
+S_wwww:
+  r**5/315 - r**3/420 + r/5040 - 1/(1008*r)
+(tr S)_ww:
+  -r**5/420 + r**3/360 - r/2520
+tr^2 S:
+  r**5/5040 - r**3/2520 + r/5040
+
+All-n weight-six coefficient rows
+gamma_(2n+1)^[I,rho^6] = sum_p c_p beta_n^(p), n>=1
+
+K^3 : [(1/2835, 5), (1/5670, 3), (23/15120, 1), (1/9072, -1), (1/6480, -3), (-1/432, -5)]
+K DeltaK : [(-1/756, 5), (53/15120, 3), (-1/280, 1), (1/720, -1)]
+K K_ww : [(-1/315, 5), (-5/504, 3), (13/1680, 1), (1/840, -1), (1/240, -3)]
+|grad K|^2 : [(71/30240, 5), (-61/15120, 3), (17/10080, 1)]
+K_w^2 : [(-1/140, 5), (139/10080, 3), (-1/48, 2), (-17/10080, 1), (1/72, 0), (-1/672, -1), (1/288, -3)]
+S_wwww : [(1/315, 5), (-1/420, 3), (1/5040, 1), (-1/1008, -1)]
+(tr S)_ww : [(-1/420, 5), (1/360, 3), (-1/2520, 1)]
+tr^2 S : [(1/5040, 5), (-1/2520, 3), (1/5040, 1)]
+
+Explicit weight-six coefficients
+========================================================================
+gamma_3 [rho^6]:
+  K^3            -1/135
+  K DeltaK       1/1890
+  K K_ww         13/504
+  |grad K|^2     -1/1512
+  K_w^2          47/2016
+  S_wwww         -5/1008
+  (tr S)_ww      1/504
+  tr^2 S         0
+
+gamma_5 [rho^6]:
+  K^3            -1/108
+  K DeltaK       -1/5040
+  K K_ww         -1/420
+  |grad K|^2     3/1120
+  K_w^2          -83/40320
+  S_wwww         47/10080
+  (tr S)_ww      -17/5040
+  tr^2 S         1/5040
+
+gamma_7 [rho^6]:
+  K^3            -227/15120
+  K DeltaK       13/10080
+  K K_ww         3/320
+  |grad K|^2     -11/10080
+  K_w^2          119/11520
+  S_wwww         -59/40320
+  (tr S)_ww      19/20160
+  tr^2 S         -1/10080
+
+gamma_9 [rho^6]:
+  K^3            -233/11340
+  K DeltaK       79/120960
+  K K_ww         41/4032
+  |grad K|^2     -61/241920
+  K_w^2          5681/645120
+  S_wwww         -37/80640
+  (tr S)_ww      1/5760
+  tr^2 S         -1/40320
+
+gamma_11 [rho^6]:
+  K^3            -809/30240
+  K DeltaK       1/2016
+  K K_ww         1213/107520
+  |grad K|^2     -13/107520
+  K_w^2          12031/1290240
+  S_wwww         -29/92160
+  (tr S)_ww      23/322560
+  tr^2 S         -1/80640
+
+ALL CHECKS PASS
+
+
+Release verification completed.
