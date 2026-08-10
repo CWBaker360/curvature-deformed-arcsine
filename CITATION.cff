@@ -1,56 +1,34 @@
-cff-version: "1.2.0"
-
+cff-version: 1.2.0
 message: "If you use this manuscript or its reproducibility materials, please cite the preferred citation below."
-
 title: "Curvature-Deformed Arcsine Reproducibility Package"
-
 type: software
-
 authors:
 
 * family-names: "Baker"
   given-names: "Wayne"
+  version: "1.0.2"
+  date-released: "2026-08-09"
+  repository-code: "https://github.com/CWBaker360/curvature-deformed-arcsine"
+  url: "https://github.com/CWBaker360/curvature-deformed-arcsine/releases/tag/v1.0.2"
+  abstract: "Reproducibility package for A Curvature-Deformed Arcsine Coordinate for Cubic Geometric Refinement, including the manuscript, symbolic verification scripts, high-precision torus computations, retained numerical data, and validation results."
+  keywords:
+* "Riemannian geometry"
+* "geodesic side law"
+* "arcsine"
+* "Schroeder equation"
+* "Koenigs linearization"
+* "curvature invariants"
+* "cubic refinement"
+* "extrapolation"
+  preferred-citation:
+  type: article
+  authors:
 
-version: "1.0.2"
+  * family-names: "Baker"
+    given-names: "Wayne"
+    title: "A Curvature-Deformed Arcsine Coordinate for Cubic Geometric Refinement: Exact Spherical Conjugacy, Riemannian Expansion Through Fifth Order, and a High-Precision Weight-Six Reconstruction"
+    year: 2026
+    status: preprint
+    url: "https://github.com/CWBaker360/curvature-deformed-arcsine/blob/v1.0.0/paper/baker_curvature_deformed_arcsine.pdf"
 
-date-released: "2026-08-09"
-
-repository-code: "https://github.com/CWBaker360/curvature-deformed-arcsine"
-
-url: "https://github.com/CWBaker360/curvature-deformed-arcsine/releases/tag/v1.0.2"
-
-abstract: >-
-Reproducibility package for A Curvature-Deformed Arcsine Coordinate for
-Cubic Geometric Refinement, including the manuscript, symbolic verification
-scripts, high-precision torus computations, retained numerical data, and
-validation results.
-
-keywords:
-
-* Riemannian geometry
-* geodesic side law
-* arcsine
-* Schroeder equation
-* Koenigs linearization
-* curvature invariants
-* cubic refinement
-* extrapolation
-
-preferred-citation:
-type: article
-
-authors:
-- family-names: "Baker"
-given-names: "Wayne"
-
-title: >-
-A Curvature-Deformed Arcsine Coordinate for Cubic Geometric Refinement:
-Exact Spherical Conjugacy, Riemannian Expansion Through Fifth Order, and a
-High-Precision Weight-Six Reconstruction
-
-year: 2026
-
-status: preprint
-
-url: "https://github.com/CWBaker360/curvature-deformed-arcsine/blob/v1.0.0/paper/baker_curvature_deformed_arcsine.pdf"
 
