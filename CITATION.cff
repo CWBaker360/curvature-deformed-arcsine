@@ -1,10 +1,9 @@
 cff-version: 1.2.0
 message: "If you use this work, please cite it using these metadata."
+title: "Curvature-Deformed Arcsine Reproducibility Package"
 authors:
-
-* family-names: "Baker"
-  given-names: "Wayne"
-  title: "Curvature-Deformed Arcsine Reproducibility Package"
-  version: 1.0.2
-  date-released: 2026-08-09
-  url: "https://github.com/CWBaker360/curvature-deformed-arcsine"
+  - family-names: "Baker"
+    given-names: "Wayne"
+version: "1.0.2"
+date-released: "2026-08-09"
+url: "https://github.com/CWBaker360/curvature-deformed-arcsine"
