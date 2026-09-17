@@ -1,9 +1,13 @@
 cff-version: 1.2.0
 message: "If you use this work, please cite it using these metadata."
-title: "Curvature-Deformed Arcsine Reproducibility Package"
+title: "A Curvature-Deformed Arcsine Coordinate for Cubic Geometric Refinement"
+type: article
 authors:
   - family-names: "Baker"
     given-names: "Wayne"
 version: "1.0.2"
 date-released: "2026-08-09"
+doi: "10.5281/zenodo.22820537"
+repository-code: "https://github.com/CWBaker360/curvature-deformed-arcsine"
 url: "https://github.com/CWBaker360/curvature-deformed-arcsine"
+license-url: "https://github.com/CWBaker360/curvature-deformed-arcsine/blob/main/LICENSE.md"
