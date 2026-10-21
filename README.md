@@ -23,6 +23,10 @@ The manuscript develops the normalized intrinsic geodesic side law as an exact l
 - all Taylor coefficients at weight six in generalized-binomial form; and
 - a finite Laurent-kernel conjecture for the full hierarchy.
 
+## October 2026 related-work status note
+
+See [`OCTOBER_2026_RESEARCH_STATUS.md`](OCTOBER_2026_RESEARCH_STATUS.md) for a scoped cross-reference to the October directional-curvature audit and certification closeout. That audit concerns a **distinct, related manuscript**; it is not a weight-six proof or a modification to this August 2026 frozen release. The original release checksum manifest remains historical and does not cover this later documentation note.
+
 ## Mathematical status boundary
 
 The paper is **analytic through geometric weight five**.
