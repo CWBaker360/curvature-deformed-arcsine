@@ -5,6 +5,15 @@
 **Release date:** August 8, 2026  
 **Status:** Frozen research manuscript and reproducibility archive
 
+
+## Related October 2026 manuscript — Directional Curvature v2.5
+
+- [Directional Curvature v2.5 PDF](related/directional_curvature_v2_5.pdf)
+- [Directional Curvature v2.5 LaTeX](related/directional_curvature_v2_5.tex)
+
+**Separate research manuscript:** These files are related work, not a new version of the August 2026 *Curvature-Deformed Arcsine* release. The latter remains frozen at v1.0.0. The directional-curvature manuscript has its own claims, scope, and review history; storing it under `related/` does not imply that the repository's original release has been superseded.
+
+
 ## Manuscript
 
 The release manuscript is:
@@ -113,7 +122,3 @@ The manuscript and documentation are released under **Creative Commons Attributi
 
 The principal unresolved proof obligation is an independent analytic derivation of the degree-eight two-point geodesic-distance term sufficient to prove the reconstructed general weight-six side law without numerical recovery.
 
-
-## October 30, 2026 source update (PDF synchronization pending)
-
-The file `related/directional_curvature_v2_5.tex` is the separately reviewed October 29, 2026 Directional Curvature Expansion v2.5 source. It is related research, **not** a replacement of the frozen August curvature-deformed-arcsine paper. The companion v2.5 PDF and independent verification bundle have not yet been added here.
